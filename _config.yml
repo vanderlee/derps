@@ -1,0 +1,13 @@
+title: Derps
+description: Duct-tape AI agents for the hillbilly masses.
+theme: jekyll-theme-cayman
+markdown: kramdown
+show_downloads: false
+plugins:
+  - jekyll-relative-links
+relative_links:
+  enabled: true
+  collections: false
+exclude:
+  - README.md
+  - .github/

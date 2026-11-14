@@ -1,0 +1,4 @@
+Job ID,Enabled,Run days,Run hours,Job name,Instructions,Notification policy
+science-brief,TRUE,"Mon,Tue,Wed,Thu,Fri",07,Science brief,"Find up to three significant scientific discoveries reported in the last 24 hours. Prefer original research and trustworthy primary sources. Include links and avoid repeating earlier stories unless materially new.",on-change
+weekly-review,FALSE,Fri,16,Weekly review,"Using only documents I explicitly authorize, summarize progress since the previous review, identify blockers, and propose three next actions. Do not edit files without approval.",always
+price-watch,FALSE,"Mon,Wed,Fri","08,18",Price watch,"Check a product and retailers that I have explicitly configured in a separate list. Verify current prices directly with retailers. Report only meaningful changes with source links; never buy automatically.",on-change

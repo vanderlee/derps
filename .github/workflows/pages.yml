@@ -1,0 +1,61 @@
+name: Deploy Derps documentation to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Generate index.md from the README
+        shell: bash
+        run: |
+          {
+            printf '%s\n' '---' 'layout: default' 'title: Derps' '---' ''
+            cat README.md
+          } > index.md
+
+          # Derive the project URL prefix so forks work without edits.
+          repo_name="${GITHUB_REPOSITORY#*/}"
+          if [[ "${repo_name,,}" == *.github.io ]]; then
+            printf '\nbaseurl: ""\n' >> _config.yml
+          else
+            printf '\nbaseurl: "/%s"\n' "$repo_name" >> _config.yml
+          fi
+
+      - name: Build Jekyll site
+        uses: actions/jekyll-build-pages@v1
+        with:
+          source: ./
+          destination: ./_site
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
