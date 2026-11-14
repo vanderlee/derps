@@ -2,27 +2,21 @@
 
 **Duct-tape AI agents for the hillbilly masses.**
 
-One schedule. Lots of little jobs. A spreadsheet or a folder of Markdown files tells your AI assistant what to do. Derps is a **pattern and starter kit**, not another daemon demanding a server, API key, and a small blood sacrifice.
+Who needs Muses, Bots or Dots when you have can have Derps?
+
+Derps is a **pattern and starter kit** to use a single, external source to provide lots of scheduled jobs, just like all those expensive AI assistants, for a fraction of the cost.
+
+The **pattern** is simple:
+1. Create a **source** for job descriptions. i.e. Google Sheets, a Github repo, Excel on OneDrive.
+2. **Schedule** a job in your AI chatbot that uses the source.
+
+If you get this simple idea, you're done here and you can probably build your own solution.
+
+If you want to learn about my specific implementation of the Derps pattern, read on.
+
+## Five-minute-ish setup
 
 **No code required for the hosted-agent setup.** You need an AI assistant capable of scheduled tasks and reading your chosen configuration source. Those features, permissions, pricing, and scheduling limits vary by provider.
-
-> **Honest promise:** Derps organizes recurring instructions. It does **not** ship an autonomous agent, install a scheduler, grant third-party permissions, or guarantee exactly-once execution. Your chosen assistant does the actual work.
-
-## Documentation website (GitHub Pages)
-
-Derps can also publish this README as a [GitHub Pages](https://pages.github.com/) website. The repository includes a Jekyll theme and `.github/workflows/pages.yml`; **the README remains the only source for the homepage**. Every build generates `index.md` from `README.md`, so you never edit a second copy.
-
-To publish your own copy:
-
-1. Merge the documentation and Pages workflow into your repository's default branch.
-2. Go to **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
-3. Push a change to `README.md`, or run **Actions → Deploy Derps documentation to GitHub Pages → Run workflow**.
-4. Follow the published website URL shown in the deployment or in **Settings → Pages**.
-
-Forks work without editing a hard-coded domain: the workflow derives the project-site path from each repository's name. **Each fork must enable Pages separately.** Only publish documentation and example jobs that you're comfortable making public; a public Pages site is not a private job-history store.
-
-The site won't be live just because the files are present. Pages must be enabled, and a successful deployment must run from the default branch.
-## Five-minute-ish setup
 
 Choose **one configuration backend** and **one executor**. The backend stores rules; the executor must read them and run on a schedule.
 
